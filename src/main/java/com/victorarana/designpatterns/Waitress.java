@@ -1,6 +1,5 @@
 package com.victorarana.designpatterns;
 
-import java.util.ArrayList;
 
 public class Waitress {
 	PancakeHouseMenu pancakeHouseMenu;
@@ -12,23 +11,20 @@ public class Waitress {
 	}
 	
 	public void printMenu(){
-		ArrayList<MenuItem> breakfastItems = pancakeHouseMenu.getMenuItems();
-
-		for(int i = 0; i < breakfastItems.size(); i++){
-			MenuItem menuItem = breakfastItems.get(i);
-			System.out.println(menuItem.getName() + " ");
-			System.out.println(menuItem.getPrice() + " ");
+		Iterator pancakeIterator = pancakeHouseMenu.createIterator();
+		Iterator dinerIterator = dinerMenu.createIterator();
+		System.out.println("MENU\n----\nBREAKFAST");
+		printMenu(pancakeIterator);
+		System.out.println("\nLUNCH");
+		printMenu(dinerIterator);
+	}
+	
+	public void printMenu(Iterator iterator){
+		while(iterator.hasNext()){
+			MenuItem menuItem = (MenuItem) iterator.next();
+			System.out.print(menuItem.getName() + ", ");
+			System.out.print(menuItem.getPrice() + " -- ");
 			System.out.println(menuItem.getDescription());
-		}
-		
-		MenuItem[] lunchItems = dinerMenu.getMenuItems();
-		
-		for(int i = 0; i < lunchItems.length && lunchItems[i+1] != null; i++){
-			MenuItem menuItem = lunchItems[i];
-			System.out.println(menuItem.getName() + " ");
-			System.out.println(menuItem.getPrice() + " ");
-			System.out.println(menuItem.getDescription());
-			
 		}
 	}
 }
