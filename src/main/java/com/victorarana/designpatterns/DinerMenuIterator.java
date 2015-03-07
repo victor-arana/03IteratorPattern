@@ -1,6 +1,9 @@
 package com.victorarana.designpatterns;
 
-public class DinerMenuIterator implements Iterator {
+import java.util.Iterator;
+
+
+public class DinerMenuIterator implements Iterator<MenuItem> {
 
 	MenuItem[] items;
 	// Position maintains the current position of the iteration
@@ -27,7 +30,7 @@ public class DinerMenuIterator implements Iterator {
 	
 	// The next() method returns the next item in the array and increments the position
 	@Override
-	public Object next() {
+	public MenuItem next() {
 		MenuItem menuItem = items[position];
 		position = position + 1;
 		return menuItem;
